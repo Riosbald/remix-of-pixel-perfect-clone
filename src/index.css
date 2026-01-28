@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Celonis-inspired Design System */
+/* Ase Design System */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
@@ -126,6 +126,51 @@
 
   .animate-pulse-glow {
     animation: pulse-glow 4s ease-in-out infinite;
+  }
+
+  /* Globe rotation animation */
+  @keyframes globe-rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-globe-rotate {
+    animation: globe-rotate 60s linear infinite;
+  }
+
+  /* Floating particle animations */
+  @keyframes float-particle {
+    0%, 100% {
+      transform: translateY(0) translateX(0);
+      opacity: 0.7;
+    }
+    50% {
+      transform: translateY(-20px) translateX(10px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes float-particle-delayed {
+    0%, 100% {
+      transform: translateY(0) translateX(0);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translateY(-15px) translateX(-8px);
+      opacity: 0.9;
+    }
+  }
+
+  .animate-float-particle {
+    animation: float-particle 4s ease-in-out infinite;
+  }
+
+  .animate-float-particle-delayed {
+    animation: float-particle-delayed 5s ease-in-out infinite 1s;
   }
 }
 

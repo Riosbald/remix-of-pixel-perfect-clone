@@ -1,22 +1,45 @@
 import { ArrowRight, PenTool, Share2, Zap, ShieldCheck, FormInput, Code2 } from "lucide-react";
+import { motion } from "framer-motion";
 import buildFormSvg from "@/assets/build-form.svg";
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-100px" },
+  transition: { duration: 0.6, ease: "easeOut" as const }
+};
+
+const cardVariants = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-50px" }
+};
 
 export const FormsSection = () => {
   return (
     <section className="py-24 lg:py-32 bg-card">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
         {/* Main Header */}
-        <div className="text-center mb-16 lg:mb-24">
+        <motion.div 
+          {...fadeInUp}
+          className="text-center mb-16 lg:mb-24"
+        >
           <h2 className="text-display-md font-light text-foreground mb-6">
             Forms, but <span className="text-primary">programmable.</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Build simple forms fast, or design dynamic, validated, logic-driven forms powered by flows.
           </p>
-        </div>
+        </motion.div>
 
         {/* Form Illustration */}
-        <div className="mb-24 flex justify-center">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.7 }}
+          className="mb-24 flex justify-center"
+        >
           <div className="relative w-full max-w-2xl bg-background p-8 border border-border">
             <img 
               src={buildFormSvg} 
@@ -24,12 +47,16 @@ export const FormsSection = () => {
               className="w-full h-auto"
             />
           </div>
-        </div>
+        </motion.div>
 
         {/* Features Grid */}
         <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
           {/* Design forms visually */}
-          <div className="group bg-background p-8 border border-border hover:border-primary/30 transition-colors">
+          <motion.div 
+            {...cardVariants}
+            transition={{ duration: 0.5, delay: 0 }}
+            className="group bg-background p-8 border border-border hover:border-primary/30 transition-colors"
+          >
             <div className="mb-6">
               <div className="w-12 h-12 bg-primary/10 flex items-center justify-center mb-4">
                 <PenTool className="w-6 h-6 text-primary" />
@@ -47,10 +74,14 @@ export const FormsSection = () => {
               Learn more
               <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
             </a>
-          </div>
+          </motion.div>
 
           {/* Use them anywhere */}
-          <div className="group bg-background p-8 border border-border hover:border-primary/30 transition-colors">
+          <motion.div 
+            {...cardVariants}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="group bg-background p-8 border border-border hover:border-primary/30 transition-colors"
+          >
             <div className="mb-6">
               <div className="w-12 h-12 bg-primary/10 flex items-center justify-center mb-4">
                 <Share2 className="w-6 h-6 text-primary" />
@@ -81,10 +112,14 @@ export const FormsSection = () => {
               Learn more
               <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
             </a>
-          </div>
+          </motion.div>
 
           {/* Combine Forms with Flows */}
-          <div className="group bg-background p-8 border border-border hover:border-primary/30 transition-colors">
+          <motion.div 
+            {...cardVariants}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="group bg-background p-8 border border-border hover:border-primary/30 transition-colors"
+          >
             <div className="mb-6">
               <div className="w-12 h-12 bg-primary/10 flex items-center justify-center mb-4">
                 <Zap className="w-6 h-6 text-primary" />
@@ -108,7 +143,7 @@ export const FormsSection = () => {
               Learn more
               <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
             </a>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

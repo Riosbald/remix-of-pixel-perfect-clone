@@ -1,12 +1,39 @@
 import { ArrowRight, GitBranch, Repeat, Variable, Layers, Globe, Calendar, Play, Users, MousePointer2 } from "lucide-react";
+import { motion } from "framer-motion";
 import flowLogicSvg from "@/assets/flow-logic.svg";
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-100px" },
+  transition: { duration: 0.6, ease: "easeOut" as const }
+};
+
+const staggerContainer = {
+  initial: {},
+  whileInView: {
+    transition: {
+      staggerChildren: 0.15
+    }
+  },
+  viewport: { once: true }
+};
+
+const staggerItem = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 }
+};
 
 export const VisualProgrammingSection = () => {
   return (
     <section className="py-24 lg:py-32 bg-background">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
         {/* Main Header */}
-        <div className="text-center mb-16 lg:mb-24">
+        <motion.div 
+          {...fadeInUp}
+          className="text-center mb-16 lg:mb-24"
+        >
           <h2 className="text-display-md font-light text-foreground mb-6">
             Visual programming
             <br />
@@ -15,10 +42,16 @@ export const VisualProgrammingSection = () => {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Build real logic in a blueprint-style editor where the flow is the code.
           </p>
-        </div>
+        </motion.div>
 
         {/* Flow Illustration */}
-        <div className="mb-24 flex justify-center">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.7 }}
+          className="mb-24 flex justify-center"
+        >
           <div className="relative w-full max-w-2xl">
             <img 
               src={flowLogicSvg} 
@@ -26,12 +59,18 @@ export const VisualProgrammingSection = () => {
               className="w-full h-auto"
             />
           </div>
-        </div>
+        </motion.div>
 
         {/* Features Grid */}
-        <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
+        <motion.div 
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid lg:grid-cols-3 gap-8 lg:gap-12"
+        >
           {/* Logic without black boxes */}
-          <div className="group">
+          <motion.div variants={staggerItem} className="group">
             <div className="mb-6 flex items-center gap-3">
               <div className="w-10 h-10 bg-secondary flex items-center justify-center">
                 <Layers className="w-5 h-5 text-primary" />
@@ -63,10 +102,10 @@ export const VisualProgrammingSection = () => {
               Learn more
               <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
             </a>
-          </div>
+          </motion.div>
 
           {/* Run flows from anywhere */}
-          <div className="group">
+          <motion.div variants={staggerItem} className="group">
             <div className="mb-6 flex items-center gap-3">
               <div className="w-10 h-10 bg-secondary flex items-center justify-center">
                 <Globe className="w-5 h-5 text-primary" />
@@ -98,10 +137,10 @@ export const VisualProgrammingSection = () => {
               Learn more
               <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
             </a>
-          </div>
+          </motion.div>
 
           {/* Collaborate with your team */}
-          <div className="group">
+          <motion.div variants={staggerItem} className="group">
             <div className="mb-6 flex items-center gap-3">
               <div className="w-10 h-10 bg-secondary flex items-center justify-center">
                 <Users className="w-5 h-5 text-primary" />
@@ -120,11 +159,17 @@ export const VisualProgrammingSection = () => {
                 Live cursors
               </span>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* CTA Buttons */}
-        <div className="mt-16 flex flex-wrap justify-center gap-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-16 flex flex-wrap justify-center gap-4"
+        >
           <a
             href="#"
             className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 text-sm font-medium hover:bg-primary/90 transition-colors"
@@ -138,7 +183,7 @@ export const VisualProgrammingSection = () => {
           >
             Check the Docs
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

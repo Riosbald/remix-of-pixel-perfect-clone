@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const solutions = [
   {
@@ -28,6 +28,13 @@ const solutions = [
   },
 ];
 
+const fadeInUp = {
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-100px" },
+  transition: { duration: 0.6, ease: "easeOut" as const }
+};
+
 export const SolutionsSection = () => {
   const [activeTab, setActiveTab] = useState("ai");
   const activeSolution = solutions.find((s) => s.id === activeTab);
@@ -35,7 +42,10 @@ export const SolutionsSection = () => {
   return (
     <section id="solutions" className="py-20 lg:py-32">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
+        <motion.div 
+          {...fadeInUp}
+          className="grid lg:grid-cols-2 gap-16 lg:gap-24"
+        >
           {/* Left Column */}
           <div>
             <h2 className="text-3xl lg:text-4xl font-medium text-foreground mb-4">
@@ -56,10 +66,16 @@ export const SolutionsSection = () => {
               <span>See all solutions</span>
             </a>
           </div>
-        </div>
+        </motion.div>
 
         {/* Tabs */}
-        <div className="mt-20 lg:mt-32 grid lg:grid-cols-2 gap-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-20 lg:mt-32 grid lg:grid-cols-2 gap-16"
+        >
           {/* Tab List */}
           <div className="space-y-0">
             {solutions.map((solution) => (
@@ -86,18 +102,26 @@ export const SolutionsSection = () => {
 
           {/* Tab Content */}
           <div className="flex flex-col justify-center">
-            {activeSolution && (
-              <div className="animate-fade-in" key={activeSolution.id}>
-                <h3 className="text-2xl lg:text-3xl font-medium text-foreground mb-4">
-                  {activeSolution.heading}
-                </h3>
-                <p className="text-lg text-muted-foreground">
-                  {activeSolution.description}
-                </p>
-              </div>
-            )}
+            <AnimatePresence mode="wait">
+              {activeSolution && (
+                <motion.div
+                  key={activeSolution.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h3 className="text-2xl lg:text-3xl font-medium text-foreground mb-4">
+                    {activeSolution.heading}
+                  </h3>
+                  <p className="text-lg text-muted-foreground">
+                    {activeSolution.description}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
