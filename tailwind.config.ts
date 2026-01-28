@@ -47,16 +47,29 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
+        celonis: {
+          green: "hsl(120 100% 50%)",
+          dark: "hsl(0 0% 0%)",
+          gray: {
+            100: "hsl(0 0% 90%)",
+            200: "hsl(0 0% 75%)",
+            300: "hsl(0 0% 55%)",
+            400: "hsl(0 0% 45%)",
+            500: "hsl(0 0% 35%)",
+            600: "hsl(0 0% 25%)",
+            700: "hsl(0 0% 15%)",
+            800: "hsl(0 0% 10%)",
+            900: "hsl(0 0% 5%)",
+          },
         },
+      },
+      fontFamily: {
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+      },
+      fontSize: {
+        'display-xl': ['clamp(48px, 8vw, 120px)', { lineHeight: '1', letterSpacing: '-0.02em' }],
+        'display-lg': ['clamp(36px, 6vw, 80px)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+        'display-md': ['clamp(28px, 4vw, 56px)', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -65,25 +78,27 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        "fade-in": {
+          from: { opacity: "0", transform: "translateY(20px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        marquee: "marquee 20s linear infinite",
+        "fade-in": "fade-in 0.6s ease-out forwards",
       },
     },
   },
