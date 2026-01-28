@@ -6,6 +6,7 @@ import { FormsSection } from "@/components/FormsSection";
 import { SolutionsSection } from "@/components/SolutionsSection";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
+import { ChatbotWidget } from "@/components/ChatbotWidget";
 
 const Index = () => {
   return (
@@ -22,6 +23,9 @@ const Index = () => {
       <SolutionsSection />
       <CTASection />
       <Footer />
+      
+      {/* AI Chatbot Widget */}
+      <ChatbotWidget />
     </div>
   );
 };
