@@ -1,15 +1,29 @@
 import { useState } from "react";
-import { ChevronDown, Search, User, Menu, X } from "lucide-react";
+import { ChevronDown, Search, User, Menu, X, Compass, Users, Lightbulb, PenTool, Upload, DollarSign } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
   { label: "Platform", hasDropdown: false },
   { label: "Solutions", hasDropdown: true },
+  { label: "Marketplace", hasDropdown: true },
   { label: "Get started", hasDropdown: true },
   { label: "Insights", hasDropdown: false },
   { label: "Company", hasDropdown: true },
   { label: "Events", hasDropdown: false },
 ];
+
+const marketplaceDropdown = {
+  discover: [
+    { icon: Compass, label: "Explore All Agents", description: "Browse our full agent catalog" },
+    { icon: Users, label: "Industry Solutions", description: "Solutions for your sector" },
+    { icon: Lightbulb, label: "Community Innovations", description: "User-created automations" },
+  ],
+  create: [
+    { icon: PenTool, label: "Become Agent Creator", description: "Start building agents" },
+    { icon: Upload, label: "Publish Automations", description: "Share your workflows" },
+    { icon: DollarSign, label: "Monetize Intelligence", description: "Earn from your creations" },
+  ],
+};
 
 export const Navbar = () => {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
@@ -29,21 +43,93 @@ export const Navbar = () => {
           {/* Navigation Links - Desktop */}
           <div className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => (
-              <button
+              <div 
                 key={item.label}
-                className="flex items-center gap-1 px-4 py-2 text-sm text-foreground/80 hover:text-foreground transition-colors"
+                className="relative"
                 onMouseEnter={() => setHoveredItem(item.label)}
                 onMouseLeave={() => setHoveredItem(null)}
               >
-                {item.label}
-                {item.hasDropdown && (
-                  <ChevronDown
-                    className={`w-3.5 h-3.5 transition-transform ${
-                      hoveredItem === item.label ? "rotate-180" : ""
-                    }`}
-                  />
-                )}
-              </button>
+                <button
+                  className="flex items-center gap-1 px-4 py-2 text-sm text-foreground/80 hover:text-foreground transition-colors"
+                >
+                  {item.label}
+                  {item.hasDropdown && (
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 transition-transform ${
+                        hoveredItem === item.label ? "rotate-180" : ""
+                      }`}
+                    />
+                  )}
+                </button>
+                
+                {/* Marketplace Dropdown */}
+                <AnimatePresence>
+                  {item.label === "Marketplace" && hoveredItem === "Marketplace" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[500px] bg-card border border-border rounded-lg shadow-xl overflow-hidden z-50"
+                    >
+                      <div className="p-6">
+                        <div className="grid grid-cols-2 gap-6">
+                          {/* Discover Column */}
+                          <div>
+                            <h4 className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">Discover</h4>
+                            <div className="space-y-1">
+                              {marketplaceDropdown.discover.map((item) => (
+                                <a
+                                  key={item.label}
+                                  href="#"
+                                  className="flex items-start gap-3 p-2 rounded-lg hover:bg-muted transition-colors group"
+                                >
+                                  <div className="w-8 h-8 bg-muted rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                                    <item.icon className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
+                                  </div>
+                                  <div>
+                                    <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{item.label}</p>
+                                    <p className="text-xs text-muted-foreground">{item.description}</p>
+                                  </div>
+                                </a>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Create Column */}
+                          <div>
+                            <h4 className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">Create</h4>
+                            <div className="space-y-1">
+                              {marketplaceDropdown.create.map((item) => (
+                                <a
+                                  key={item.label}
+                                  href="#"
+                                  className="flex items-start gap-3 p-2 rounded-lg hover:bg-muted transition-colors group"
+                                >
+                                  <div className="w-8 h-8 bg-muted rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                                    <item.icon className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
+                                  </div>
+                                  <div>
+                                    <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{item.label}</p>
+                                    <p className="text-xs text-muted-foreground">{item.description}</p>
+                                  </div>
+                                </a>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Footer */}
+                        <div className="mt-4 pt-4 border-t border-border">
+                          <p className="text-xs text-muted-foreground text-center">
+                            Expand your platform's power with our vibrant, ever-growing ecosystem.
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             ))}
           </div>
 

@@ -1,7 +1,25 @@
 import { ArrowDown } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+
+const rotatingTexts = [
+  "IT works",
+  "Supply chain works",
+  "Automotive works",
+  "Enterprise AI works",
+  "Everything works",
+];
 
 export const HeroSection = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % rotatingTexts.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden">
       {/* Content */}
@@ -15,14 +33,25 @@ export const HeroSection = () => {
           >
             When processes work,
           </motion.h1>
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-            className="text-display-lg font-light text-foreground mb-8"
-          >
-            IT works
-          </motion.h1>
+          
+          {/* Rotating text container */}
+          <div className="h-[1.2em] text-display-lg font-light text-foreground mb-8 overflow-hidden relative">
+            <AnimatePresence mode="wait">
+              <motion.h1
+                key={currentIndex}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -40 }}
+                transition={{ 
+                  duration: 0.5, 
+                  ease: "easeInOut"
+                }}
+                className="text-display-lg font-light text-primary"
+              >
+                {rotatingTexts[currentIndex]}
+              </motion.h1>
+            </AnimatePresence>
+          </div>
 
           <motion.a
             initial={{ opacity: 0, y: 20 }}
@@ -93,14 +122,15 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      {/* Stats Card */}
+      {/* Stats Card with hover animation */}
       <motion.div 
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.5 }}
+        whileHover={{ scale: 1.05, rotateY: 5 }}
         className="absolute right-6 lg:right-10 bottom-20 lg:bottom-32 z-20"
       >
-        <div className="bg-primary p-4 lg:p-5 max-w-[200px]">
+        <div className="bg-primary p-4 lg:p-5 max-w-[200px] transition-shadow hover:shadow-lg hover:shadow-primary/30">
           <p className="text-primary-foreground text-xs leading-relaxed mb-2">
             Process automation opportunities discovered and implemented
           </p>
@@ -110,14 +140,15 @@ export const HeroSection = () => {
         </div>
       </motion.div>
 
-      {/* Floating image card */}
+      {/* Floating image card with hover */}
       <motion.div 
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
+        whileHover={{ scale: 1.08, rotateZ: 2 }}
         className="absolute right-6 lg:right-10 top-32 lg:top-40 z-20"
       >
-        <div className="w-32 h-24 lg:w-40 lg:h-28 bg-card overflow-hidden">
+        <div className="w-32 h-24 lg:w-40 lg:h-28 bg-card overflow-hidden transition-shadow hover:shadow-lg hover:shadow-primary/20">
           <div className="w-full h-full bg-gradient-to-br from-muted to-card flex items-center justify-center">
             <div className="w-8 h-8 rounded-full bg-muted-foreground/30" />
           </div>
