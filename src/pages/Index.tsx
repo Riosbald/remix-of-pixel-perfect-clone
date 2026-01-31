@@ -1,8 +1,11 @@
 import { Navbar } from "@/components/Navbar";
 import { MarqueeSection } from "@/components/MarqueeSection";
 import { HeroSection } from "@/components/HeroSection";
+import { VoiceFirstSection } from "@/components/VoiceFirstSection";
+import { WorkflowCanvasSection } from "@/components/WorkflowCanvasSection";
 import { VisualProgrammingSection } from "@/components/VisualProgrammingSection";
 import { FormsSection } from "@/components/FormsSection";
+import { VendorManagementSection } from "@/components/VendorManagementSection";
 import { SolutionsSection } from "@/components/SolutionsSection";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
@@ -18,8 +21,11 @@ const Index = () => {
       
       <MarqueeSection />
       <HeroSection />
+      <VoiceFirstSection />
+      <WorkflowCanvasSection />
       <VisualProgrammingSection />
       <FormsSection />
+      <VendorManagementSection />
       <SolutionsSection />
       <CTASection />
       <Footer />
