@@ -1,0 +1,754 @@
+================================================================================
+                        ASE DESIGN SYSTEM SPECIFICATION
+                     Pixel-Perfect Landing Page Guidelines
+================================================================================
+
+Last Updated: January 2026
+Version: 1.0
+
+================================================================================
+TABLE OF CONTENTS
+================================================================================
+
+1.  BRAND IDENTITY
+2.  COLOR SYSTEM
+3.  TYPOGRAPHY
+4.  SPACING & LAYOUT
+5.  COMPONENT PATTERNS
+6.  ANIMATION SYSTEM
+7.  NAVIGATION PATTERNS
+8.  SECTION SPECIFICATIONS
+9.  RESPONSIVE BREAKPOINTS
+10. ICON SYSTEM
+11. SHADOW & DEPTH
+12. ACCESSIBILITY GUIDELINES
+
+================================================================================
+1. BRAND IDENTITY
+================================================================================
+
+Brand Name:         ASE
+Tagline:            Process Intelligence Platform
+Visual Direction:   Dark, minimal, high-contrast with vibrant accent
+Aesthetic:          Brutalist-minimal with tech-forward elegance
+
+Key Visual Traits:
+- Pure black backgrounds
+- Vibrant lime green (#00FF00) as primary accent
+- Sharp edges, no rounded corners (--radius: 0px)
+- High contrast text hierarchy
+- Generous whitespace
+- Grid-based layouts
+
+================================================================================
+2. COLOR SYSTEM (HSL Values)
+================================================================================
+
+## Core Palette
+
+### Background Colors
+--background:           0 0% 0%        /* Pure black #000000 */
+--card:                 0 0% 5%        /* Near-black #0D0D0D */
+--popover:              0 0% 5%        /* Same as card */
+
+### Foreground Colors  
+--foreground:           0 0% 100%      /* Pure white #FFFFFF */
+--card-foreground:      0 0% 100%
+--popover-foreground:   0 0% 100%
+
+### Primary Accent (Lime Green)
+--primary:              120 100% 50%   /* Vibrant lime #00FF00 */
+--primary-foreground:   0 0% 0%        /* Black text on green */
+
+### Secondary Colors
+--secondary:            0 0% 10%       /* Dark gray #1A1A1A */
+--secondary-foreground: 0 0% 100%
+
+### Muted Colors
+--muted:                0 0% 15%       /* #262626 */
+--muted-foreground:     0 0% 55%       /* #8C8C8C */
+
+### Accent (Same as Primary)
+--accent:               120 100% 50%
+--accent-foreground:    0 0% 0%
+
+### Utility Colors
+--border:               0 0% 20%       /* #333333 */
+--input:                0 0% 15%       /* #262626 */
+--ring:                 120 100% 50%   /* Focus ring - lime */
+--destructive:          0 84.2% 60.2%  /* Red for errors */
+
+### Custom Text Variables
+--text-muted:           0 0% 45%       /* #737373 */
+--text-secondary:       0 0% 65%       /* #A6A6A6 */
+
+## Gray Scale (celonis- prefix)
+celonis-green:          hsl(120 100% 50%)    /* #00FF00 */
+celonis-dark:           hsl(0 0% 0%)         /* #000000 */
+celonis-gray-100:       hsl(0 0% 90%)        /* #E6E6E6 */
+celonis-gray-200:       hsl(0 0% 75%)        /* #BFBFBF */
+celonis-gray-300:       hsl(0 0% 55%)        /* #8C8C8C */
+celonis-gray-400:       hsl(0 0% 45%)        /* #737373 */
+celonis-gray-500:       hsl(0 0% 35%)        /* #595959 */
+celonis-gray-600:       hsl(0 0% 25%)        /* #404040 */
+celonis-gray-700:       hsl(0 0% 15%)        /* #262626 */
+celonis-gray-800:       hsl(0 0% 10%)        /* #1A1A1A */
+celonis-gray-900:       hsl(0 0% 5%)         /* #0D0D0D */
+
+## Gradient Definitions
+text-gradient-muted:    linear-gradient(180deg, hsl(0 0% 55%) 0%, hsl(0 0% 35%) 100%)
+
+================================================================================
+3. TYPOGRAPHY
+================================================================================
+
+## Font Family
+Primary:        'Inter', -apple-system, BlinkMacSystemFont, sans-serif
+Weights Used:   300 (Light), 400 (Regular), 500 (Medium), 600 (SemiBold), 700 (Bold)
+
+## Display Typography (Responsive - clamp())
+
+### Display XL (Hero Headlines)
+font-size:      clamp(48px, 8vw, 120px)
+line-height:    1
+letter-spacing: -0.02em
+Usage:          Marquee text, main hero titles
+
+### Display LG (Section Headlines)  
+font-size:      clamp(36px, 6vw, 80px)
+line-height:    1.1
+letter-spacing: -0.02em
+Usage:          Hero rotating text, major section headers
+
+### Display MD (Sub-headlines)
+font-size:      clamp(28px, 4vw, 56px)
+line-height:    1.15
+letter-spacing: -0.01em
+Usage:          Section introductions, featured content
+
+## Body Typography
+
+### Large Body
+font-size:      18px (text-lg)
+line-height:    1.6 (leading-relaxed)
+Usage:          Section descriptions, card content
+
+### Base Body
+font-size:      16px (text-base)
+line-height:    1.5
+Usage:          General body copy, button text
+
+### Small Body
+font-size:      14px (text-sm)
+line-height:    1.5
+Usage:          Link text, tags, secondary info
+
+### Extra Small
+font-size:      12px (text-xs)
+line-height:    1.4
+Usage:          Labels, footnotes, metadata
+
+## Heading Scale
+
+h1:  text-display-lg   font-light   (Hero)
+h2:  text-display-md   font-light   (Section)
+h3:  text-2xl-3xl      font-medium  (Sub-section)
+h4:  text-xl           font-medium  (Card titles)
+h5:  text-xs           uppercase tracking-wider  (Labels)
+
+## Text Colors by Context
+
+Primary Text:     text-foreground        /* White */
+Secondary Text:   text-foreground/80     /* 80% opacity white */
+Muted Text:       text-muted-foreground  /* Gray #8C8C8C */
+Accent Text:      text-primary           /* Lime green */
+Gradient Text:    text-gradient-muted    /* Gray gradient */
+
+================================================================================
+4. SPACING & LAYOUT
+================================================================================
+
+## Container
+
+max-width:      1400px
+padding-x:      6 (24px) mobile | 10 (40px) desktop (lg:px-10)
+center:         mx-auto
+
+## Section Spacing
+
+Vertical:       py-24 (96px) lg:py-32 (128px)
+Between:        gap-16 (64px) lg:gap-24 (96px)
+
+## Content Spacing
+
+Large Gap:      gap-12 (48px)
+Medium Gap:     gap-8 (32px)
+Small Gap:      gap-6 (24px)
+Tiny Gap:       gap-4 (16px) | gap-3 (12px) | gap-2 (8px)
+
+## Grid Systems
+
+### 12-Column Grid (Footer)
+lg:grid-cols-12 with col-span assignments
+
+### 3-Column Grid (Features)
+lg:grid-cols-3 gap-8 lg:gap-12
+
+### 2-Column Grid (Content)
+lg:grid-cols-2 gap-16 lg:gap-24
+
+## Component Internal Spacing
+
+Card Padding:   p-8 (32px)
+Button Padding: px-6 py-3 (24px/12px) | px-4 py-2 (16px/8px)
+Tag Padding:    px-3 py-1 (12px/4px)
+Icon Box:       w-10 h-10 | w-12 h-12
+
+## Navigation
+
+Height:         60px (h-[60px])
+Spacing CSS:    --nav-height: 60px
+
+## Border Radius
+--radius:       0px (Sharp corners throughout)
+
+================================================================================
+5. COMPONENT PATTERNS
+================================================================================
+
+## Buttons
+
+### Primary Button
+bg-primary text-primary-foreground
+px-6 py-3 (large) | px-4 py-2 (small)
+text-sm font-medium
+hover:bg-primary/90 transition-colors
+No border-radius (sharp edges)
+
+### Secondary/Outline Button
+bg-transparent text-foreground
+border border-foreground/30
+hover:border-foreground/60
+
+### Ghost Button
+bg-transparent text-foreground/80
+hover:text-foreground
+
+## Cards
+
+### Standard Card
+bg-background p-8 border border-border
+hover:border-primary/30 transition-colors
+
+### Elevated Card (Stats)
+bg-primary p-4 lg:p-5
+text-primary-foreground
+
+### Muted Card
+bg-muted rounded-lg p-3
+
+## Tags/Badges
+
+inline-flex items-center gap-1.5
+px-3 py-1 bg-secondary
+text-sm text-secondary-foreground
+No border-radius
+
+## Links
+
+### Arrow Link
+inline-flex items-center gap-2
+text-sm text-foreground hover:text-primary
+With bullet: <span className="w-1.5 h-1.5 bg-primary" />
+Arrow icon: group-hover/link:translate-x-1 transition-transform
+
+### Nav Link  
+text-sm text-foreground/80 hover:text-foreground
+
+### External Link
+With ArrowUpRight icon (w-3.5 h-3.5)
+
+## Inputs
+
+flex-1 bg-muted rounded-lg
+px-4 py-2.5 text-sm text-foreground
+placeholder:text-muted-foreground
+focus:outline-none focus:ring-2 focus:ring-primary/50
+
+## Icon Containers
+
+### Small Icon Box
+w-8 h-8 bg-muted rounded-lg
+flex items-center justify-center
+
+### Medium Icon Box  
+w-10 h-10 bg-secondary
+flex items-center justify-center
+
+### Large Icon Box
+w-12 h-12 bg-primary/10
+flex items-center justify-center
+
+## Dropdown Menus
+
+bg-card border border-border rounded-lg
+shadow-xl overflow-hidden
+Hover state: hover:bg-muted
+
+================================================================================
+6. ANIMATION SYSTEM
+================================================================================
+
+## Framer Motion Variants
+
+### Fade In Up (Standard Entry)
+fadeInUp = {
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-100px" },
+  transition: { duration: 0.6, ease: "easeOut" }
+}
+
+### Stagger Container
+staggerContainer = {
+  initial: {},
+  whileInView: {
+    transition: { staggerChildren: 0.15 }
+  },
+  viewport: { once: true }
+}
+
+### Stagger Item
+staggerItem = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 }
+}
+
+### Card Hover
+whileHover: { scale: 1.05, rotateY: 5 }
+whileHover: { scale: 1.08, rotateZ: 2 }
+
+### Button/Interactive Hover
+whileHover: { scale: 1.1 }
+whileTap: { scale: 0.95 }
+whileHover: { x: 4 }
+
+### Rotating Text (AnimatePresence)
+initial: { opacity: 0, y: 40 }
+animate: { opacity: 1, y: 0 }
+exit: { opacity: 0, y: -40 }
+transition: { duration: 0.5, ease: "easeInOut" }
+Interval: 3000ms (3 seconds)
+
+### Menu Slide
+initial: { opacity: 0, height: 0 }
+animate: { opacity: 1, height: "auto" }
+exit: { opacity: 0, height: 0 }
+transition: { duration: 0.3, ease: "easeInOut" }
+
+### Dropdown Entry
+initial: { opacity: 0, y: 10 }
+animate: { opacity: 1, y: 0 }
+exit: { opacity: 0, y: 10 }
+transition: { duration: 0.2 }
+
+### Chat Widget
+initial: { opacity: 0, scale: 0.8, y: 20 }
+animate: { opacity: 1, scale: 1, y: 0 }
+transition: { type: "spring", damping: 25, stiffness: 300 }
+
+## CSS Keyframe Animations
+
+### Marquee (Infinite scroll)
+@keyframes marquee {
+  0%: { transform: translateX(0) }
+  100%: { transform: translateX(-50%) }
+}
+Duration: 20s linear infinite
+
+### Globe Rotation
+@keyframes globe-rotate {
+  0%: { transform: rotate(0deg) }
+  100%: { transform: rotate(360deg) }
+}
+Duration: 60s linear infinite
+
+### Pulse Glow
+@keyframes pulse-glow {
+  0%, 100%: { opacity: 0.3 }
+  50%: { opacity: 0.6 }
+}
+Duration: 4s ease-in-out infinite
+
+### Float Particle
+@keyframes float-particle {
+  0%, 100%: { transform: translateY(0) translateX(0); opacity: 0.7 }
+  50%: { transform: translateY(-20px) translateX(10px); opacity: 1 }
+}
+Duration: 4s ease-in-out infinite
+
+### Float Particle Delayed
+@keyframes float-particle-delayed {
+  0%, 100%: { transform: translateY(0) translateX(0); opacity: 0.5 }
+  50%: { transform: translateY(-15px) translateX(-8px); opacity: 0.9 }
+}
+Duration: 5s ease-in-out infinite 1s (delay)
+
+### Fade In (Basic)
+@keyframes fadeIn {
+  from: { opacity: 0; transform: translateY(20px) }
+  to: { opacity: 1; transform: translateY(0) }
+}
+Duration: 0.6s ease-out forwards
+
+### Accordion
+accordion-down: 0.2s ease-out
+accordion-up: 0.2s ease-out
+
+### Scroll Indicator
+animate-bounce (Tailwind default)
+
+## Transition Defaults
+transition-colors (150ms)
+transition-transform (150ms)
+transition-shadow (150ms)
+
+================================================================================
+7. NAVIGATION PATTERNS
+================================================================================
+
+## Navbar Structure
+
+Position:       fixed top-0 left-0 right-0 z-50
+Background:     bg-background/95 backdrop-blur-sm
+Border:         border-b border-border/30
+Height:         h-[60px]
+
+## Logo
+text-foreground text-xl font-semibold tracking-tight
+
+## Nav Items
+Desktop:        hidden lg:flex items-center gap-1
+Mobile:         lg:hidden (hamburger toggle)
+
+## Nav Link Style
+px-4 py-2 text-sm text-foreground/80 hover:text-foreground
+
+## Dropdown Chevron
+w-3.5 h-3.5 transition-transform
+Active: rotate-180
+
+## Mega Menu Dropdown
+
+Position:       absolute top-full left-1/2 -translate-x-1/2 mt-2
+Width:          w-[500px]
+Style:          bg-card border border-border rounded-lg shadow-xl
+
+### Dropdown Sections
+Two-column grid: grid-cols-2 gap-6
+Section Header: text-xs font-semibold text-primary uppercase tracking-wider mb-3
+
+### Dropdown Items
+flex items-start gap-3 p-2 rounded-lg
+Icon box: w-8 h-8 bg-muted rounded-lg
+hover:bg-muted group-hover:bg-primary/20
+Text: text-sm font-medium + text-xs text-muted-foreground
+
+## Mobile Menu
+
+Background:     bg-background border-t border-border/30
+Item Style:     py-3 border-b border-border/20
+Staggered Entry: delay: index * 0.05
+
+## Action Buttons (Right Side)
+Icon buttons: p-2 text-foreground/70 hover:text-foreground
+CTA button: bg-primary text-primary-foreground px-4 py-2 text-sm font-medium
+
+================================================================================
+8. SECTION SPECIFICATIONS
+================================================================================
+
+## Marquee Section
+
+Container:      overflow-hidden py-8 lg:py-12 border-b border-border/20
+Typography:     text-display-xl font-light
+Dual Layer:     Main + Background (opacity-20)
+Icon:           ArrowUpRight w-16 h-16 lg:w-24 lg:h-24 strokeWidth={1}
+Color Cycle:    text-foreground | text-muted-foreground/40
+
+## Hero Section
+
+Height:         min-h-[90vh]
+Layout:         flex flex-col justify-center overflow-hidden
+Content Width:  max-w-4xl
+
+### Rotating Text
+Container:      h-[1.2em] overflow-hidden relative
+Colors:         Static "When processes work," = text-foreground
+                Rotating text = text-primary
+Phrases:        "IT works", "Supply chain works", "Automotive works", 
+                "Enterprise AI works", "Everything works"
+Timing:         3 second intervals
+
+### 3D Globe
+Position:       absolute right-0 bottom-0
+Size:           w-full lg:w-2/3 h-[60vh] lg:h-[80vh]
+Globe Size:     w-[600px] h-[600px] lg:w-[900px] lg:h-[900px]
+Animation:      animate-globe-rotate (60s)
+Grid Lines:     12 horizontal + 16 vertical
+Grid Color:     via-muted-foreground/40 | via-muted-foreground/30
+Center Rings:   inset-[15%] | inset-[25%] | inset-[35%] border border-muted/opacity
+
+### Floating Particles
+Sizes:          w-2 h-2 | w-1.5 h-1.5 | w-1 h-1
+Colors:         bg-primary | bg-primary/70 | bg-primary/50
+
+### Stats Card
+Position:       absolute right-6 lg:right-10 bottom-20 lg:bottom-32
+Style:          bg-primary p-4 lg:p-5 max-w-[200px]
+Hover:          scale: 1.05, rotateY: 5, shadow-lg shadow-primary/30
+
+### Image Card
+Position:       absolute right-6 lg:right-10 top-32 lg:top-40
+Size:           w-32 h-24 lg:w-40 lg:h-28
+Style:          bg-card border border-border
+Hover:          scale: 1.08, rotateZ: 2
+
+### Scroll Indicator
+Position:       absolute bottom-8 left-6 lg:left-10
+Icon:           ArrowDown w-5 h-5 text-foreground/60 animate-bounce
+
+## Visual Programming Section
+
+Background:     bg-background
+Spacing:        py-24 lg:py-32
+Header:         text-center mb-16 lg:mb-24
+
+### Feature Cards (3-column grid)
+Icon Container: w-10 h-10 bg-secondary
+Title:          text-xl font-medium text-foreground
+Tags:           inline-flex gap-1.5 px-3 py-1 bg-secondary text-sm
+
+## Forms Section
+
+Background:     bg-card
+Spacing:        py-24 lg:py-32
+
+### Feature Cards
+Style:          bg-background p-8 border border-border
+Hover:          hover:border-primary/30
+Icon Container: w-12 h-12 bg-primary/10
+
+### Callout Box
+bg-primary/5 border border-primary/20 p-3
+Icon: ShieldCheck w-5 h-5 text-primary
+
+## Solutions Section
+
+Layout:         2-column grid
+Left:           Header with gradient text (text-gradient-muted)
+Right:          "See all solutions" link
+
+### Tab List
+border-t border-border/30
+Active: text-foreground font-medium
+Inactive: text-muted-foreground font-light hover:text-foreground
+
+### Tab Content
+AnimatePresence mode="wait"
+Heading: text-2xl lg:text-3xl font-medium
+Description: text-lg text-muted-foreground
+
+## CTA Section
+
+Spacing:        py-16 lg:py-24
+Layout:         flex flex-col md:flex-row gap-4 justify-center max-w-3xl mx-auto
+Buttons:        flex-1
+
+## Footer
+
+Spacing:        py-16 lg:py-24 border-t border-border/20
+Grid:           lg:grid-cols-12 gap-12 lg:gap-8
+
+### Newsletter Column
+Span:           lg:col-span-4
+Title:          text-2xl lg:text-3xl font-medium
+Subtitle:       text-xl lg:text-2xl font-light text-muted-foreground
+
+### Link Columns
+Span:           lg:col-span-2
+Header:         text-xs uppercase tracking-wider text-muted-foreground mb-6
+Links:          space-y-3 text-sm text-foreground/80
+
+### Bottom Bar
+mt-16 pt-8 border-t border-border/20
+flex flex-col md:flex-row justify-between
+
+## Chatbot Widget
+
+Position:       fixed bottom-6 right-6 z-50
+
+### Toggle Button
+w-14 h-14 bg-primary rounded-full
+Shadow: shadow-lg shadow-primary/30
+Hover: shadow-xl shadow-primary/40
+
+### Chat Window
+Width:          w-[350px]
+Style:          bg-card border border-border rounded-lg shadow-2xl
+
+### Chat Header
+bg-primary p-4
+Avatar: w-10 h-10 bg-primary-foreground/20 rounded-full
+
+### Action Buttons
+w-full p-3 bg-muted/50 hover:bg-muted rounded-lg
+Icon Container: w-8 h-8 bg-primary/20 rounded-full
+
+================================================================================
+9. RESPONSIVE BREAKPOINTS
+================================================================================
+
+## Tailwind Breakpoints
+
+sm:             640px   (Small tablets)
+md:             768px   (Tablets)
+lg:             1024px  (Desktop)
+xl:             1280px  (Large desktop)
+2xl:            1400px  (Container max-width)
+
+## Key Responsive Patterns
+
+### Navigation
+Mobile:         Hamburger menu (lg:hidden)
+Desktop:        Horizontal nav (hidden lg:flex)
+
+### Grids
+Mobile:         Single column (stack)
+Desktop:        lg:grid-cols-2 | lg:grid-cols-3 | lg:grid-cols-12
+
+### Typography
+Uses clamp() for fluid scaling:
+- Display XL: 48px → 120px
+- Display LG: 36px → 80px  
+- Display MD: 28px → 56px
+
+### Spacing
+Mobile:         px-6, py-24
+Desktop:        lg:px-10, lg:py-32
+
+### Components
+Mobile:         Full-width buttons, stacked layouts
+Desktop:        Inline buttons, side-by-side layouts
+
+================================================================================
+10. ICON SYSTEM
+================================================================================
+
+## Library
+Lucide React (lucide-react)
+
+## Icon Sizes
+
+XS:             w-3 h-3, w-3.5 h-3.5
+SM:             w-4 h-4
+MD:             w-5 h-5
+LG:             w-6 h-6
+XL:             w-16 h-16 lg:w-24 lg:h-24 (Marquee)
+
+## Icon Styles
+
+### Standard
+Default stroke width
+text-muted-foreground | text-foreground | text-primary
+
+### Thin (Decorative)
+strokeWidth={1}
+Used in marquee section
+
+## Common Icons Used
+
+Navigation:     ChevronDown, Search, User, Menu, X
+Actions:        ArrowRight, ArrowUpRight, ArrowDown
+Features:       GitBranch, Repeat, Variable, Layers, Globe, Calendar
+                Play, Users, MousePointer2, PenTool, Share2, Zap
+                ShieldCheck, FormInput, Code2
+Chatbot:        MessageCircle, Phone, Calendar, Video, Send
+Marketplace:    Compass, Users, Lightbulb, PenTool, Upload, DollarSign
+
+================================================================================
+11. SHADOW & DEPTH
+================================================================================
+
+## Shadow Patterns
+
+### Card Shadows
+hover:shadow-lg hover:shadow-primary/30
+
+### Chat Widget
+shadow-lg shadow-primary/30
+hover:shadow-xl hover:shadow-primary/40
+shadow-2xl (popup)
+
+### Dropdown
+shadow-xl
+
+## Backdrop Effects
+
+Navbar:         backdrop-blur-sm
+
+## Opacity Layers
+
+Background Layer:   opacity-20 (marquee background)
+Overlay:            /30, /40, /50 opacity modifiers
+Glow Effect:        animate-pulse-glow (0.3 → 0.6 opacity)
+
+================================================================================
+12. ACCESSIBILITY GUIDELINES
+================================================================================
+
+## ARIA Labels
+
+- Mobile menu toggle: aria-label="Open menu" | "Close menu"
+- Chat toggle: aria-label="Open ASE Assistant"
+- Chat close: aria-label="Close chat"
+- Send button: aria-label="Send message"
+
+## Focus States
+
+focus:outline-none focus:ring-2 focus:ring-primary/50
+
+## Color Contrast
+
+Primary on Black:   AAA (lime green on black)
+White on Black:     AAA (foreground on background)
+Muted Text:         AA (carefully balanced gray scale)
+
+## Motion Preferences
+
+viewport: { once: true } prevents repeated animations
+Smooth scroll: scroll-behavior: smooth
+
+## Semantic HTML
+
+- Proper heading hierarchy (h1 → h2 → h3 → h4)
+- Section elements for page regions
+- Button elements for interactive controls
+- Anchor elements for navigation
+
+================================================================================
+END OF DESIGN SYSTEM SPECIFICATION
+================================================================================
+
+USAGE NOTES:
+
+1. All colors must use CSS custom properties from index.css
+2. Never hardcode hex/rgb values in components
+3. Always use Tailwind classes with semantic tokens
+4. Maintain sharp edges (--radius: 0px) throughout
+5. Follow spacing scale consistently
+6. Test animations with reduced-motion preferences
+7. Ensure all interactive elements have hover/focus states
+
+================================================================================
