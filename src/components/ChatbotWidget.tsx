@@ -104,7 +104,7 @@ export const ChatbotWidget = () => {
     }, 1500);
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSend();
@@ -156,7 +156,7 @@ export const ChatbotWidget = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="w-[380px] bg-card border border-border rounded-xl shadow-2xl overflow-hidden"
+            className="w-[calc(100vw-2rem)] max-w-[380px] bg-card border border-border rounded-xl shadow-2xl overflow-hidden"
           >
             {/* Header */}
             <div className="bg-primary p-4 flex items-center justify-between">
@@ -323,7 +323,7 @@ export const ChatbotWidget = () => {
                   type="text"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  onKeyPress={handleKeyPress}
+                  onKeyDown={handleKeyDown}
                   placeholder="Type or speak your question..."
                   className="flex-1 bg-muted rounded-lg px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
                 />

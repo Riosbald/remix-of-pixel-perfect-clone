@@ -8,7 +8,7 @@ import { useWorkflowStore } from '@/stores/workflowStore';
 import { AnimatePresence } from 'framer-motion';
 
 const VisualCanvas = () => {
-  const { sidebarOpen, propertiesOpen, selectedNode } = useWorkflowStore();
+  const { propertiesOpen, selectedNode } = useWorkflowStore();
 
   return (
     <div className="h-screen w-full flex flex-col bg-background overflow-hidden">
@@ -17,9 +17,7 @@ const VisualCanvas = () => {
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar - hidden on mobile */}
         <div className="hidden md:flex">
-          <AnimatePresence>
-            {sidebarOpen ? <CanvasSidebar /> : <CanvasSidebar />}
-          </AnimatePresence>
+          <CanvasSidebar />
         </div>
 
         {/* Canvas */}
