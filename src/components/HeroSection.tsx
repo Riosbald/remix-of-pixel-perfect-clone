@@ -35,7 +35,7 @@ export const HeroSection = () => {
           </motion.h1>
           
           {/* Rotating text container */}
-          <div className="h-[1.2em] text-display-lg font-light text-foreground mb-8 overflow-hidden relative">
+          <div className="h-[1.2em] text-display-lg font-light text-foreground mb-8 overflow-hidden relative" aria-live="polite" aria-atomic="true">
             <AnimatePresence mode="wait">
               <motion.h1
                 key={currentIndex}

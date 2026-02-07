@@ -123,7 +123,7 @@ export const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-border/20 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © 2024 Ase. All rights reserved.
+            © {new Date().getFullYear()} Ase. All rights reserved.
           </p>
           <div className="flex flex-wrap gap-6 text-sm text-muted-foreground">
             <a href="#" className="hover:text-foreground transition-colors">
