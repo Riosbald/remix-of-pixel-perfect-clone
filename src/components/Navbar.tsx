@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { ChevronDown, Search, User, Menu, X, Compass, Users, Lightbulb, PenTool, Upload, DollarSign } from "lucide-react";
+import { ChevronDown, Search, User, Menu, X, Compass, Users, Lightbulb, PenTool, Upload, DollarSign, LayoutDashboard, Mic, ShoppingCart, Workflow } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const navItems = [
-  { label: "Platform", hasDropdown: false },
+  { label: "Platform", hasDropdown: true },
   { label: "Solutions", hasDropdown: true },
   { label: "Marketplace", hasDropdown: true },
   { label: "Get started", hasDropdown: true },
@@ -25,9 +26,17 @@ const marketplaceDropdown = {
   ],
 };
 
+const platformDropdown = [
+  { icon: LayoutDashboard, label: "Visual Canvas", description: "Drag-and-drop workflow editor", href: "/visual-canvas" },
+  { icon: Mic, label: "Voice-First Interface", description: "Control workflows with voice", href: "#voice" },
+  { icon: ShoppingCart, label: "Vendor Management", description: "End-to-end vendor ops", href: "#vendor" },
+  { icon: Workflow, label: "BPMN Modeler", description: "Standards-based modeling", href: "#workflow" },
+];
+
 export const Navbar = () => {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/30">
@@ -62,6 +71,37 @@ export const Navbar = () => {
                   )}
                 </button>
                 
+                {/* Platform Dropdown */}
+                <AnimatePresence>
+                  {item.label === "Platform" && hoveredItem === "Platform" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[340px] bg-card border border-border rounded-lg shadow-xl overflow-hidden z-50"
+                    >
+                      <div className="p-4 space-y-1">
+                        {platformDropdown.map((pd) => (
+                          <button
+                            key={pd.label}
+                            onClick={() => { navigate(pd.href); setHoveredItem(null); }}
+                            className="flex items-start gap-3 p-2.5 rounded-lg hover:bg-muted transition-colors group w-full text-left"
+                          >
+                            <div className="w-8 h-8 bg-muted rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                              <pd.icon className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
+                            </div>
+                            <div>
+                              <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{pd.label}</p>
+                              <p className="text-xs text-muted-foreground">{pd.description}</p>
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
                 {/* Marketplace Dropdown */}
                 <AnimatePresence>
                   {item.label === "Marketplace" && hoveredItem === "Marketplace" && (
