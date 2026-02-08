@@ -119,10 +119,10 @@ export const Navbar = () => {
                             <h4 className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">Discover</h4>
                             <div className="space-y-1">
                               {marketplaceDropdown.discover.map((item) => (
-                                <a
+                                <button
                                   key={item.label}
-                                  href="#"
-                                  className="flex items-start gap-3 p-2 rounded-lg hover:bg-muted transition-colors group"
+                                  onClick={() => { navigate("/marketplace"); setHoveredItem(null); }}
+                                  className="flex items-start gap-3 p-2 rounded-lg hover:bg-muted transition-colors group w-full text-left"
                                 >
                                   <div className="w-8 h-8 bg-muted rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                                     <item.icon className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
@@ -131,7 +131,7 @@ export const Navbar = () => {
                                     <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{item.label}</p>
                                     <p className="text-xs text-muted-foreground">{item.description}</p>
                                   </div>
-                                </a>
+                                </button>
                               ))}
                             </div>
                           </div>
@@ -141,10 +141,10 @@ export const Navbar = () => {
                             <h4 className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">Create</h4>
                             <div className="space-y-1">
                               {marketplaceDropdown.create.map((item) => (
-                                <a
+                                <button
                                   key={item.label}
-                                  href="#"
-                                  className="flex items-start gap-3 p-2 rounded-lg hover:bg-muted transition-colors group"
+                                  onClick={() => { navigate("/marketplace"); setHoveredItem(null); }}
+                                  className="flex items-start gap-3 p-2 rounded-lg hover:bg-muted transition-colors group w-full text-left"
                                 >
                                   <div className="w-8 h-8 bg-muted rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                                     <item.icon className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
@@ -153,7 +153,7 @@ export const Navbar = () => {
                                     <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{item.label}</p>
                                     <p className="text-xs text-muted-foreground">{item.description}</p>
                                   </div>
-                                </a>
+                                </button>
                               ))}
                             </div>
                           </div>
@@ -216,7 +216,7 @@ export const Navbar = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
                     className="flex items-center justify-between w-full py-3 text-left text-foreground/80 hover:text-foreground border-b border-border/20 transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={() => { if (item.href && item.href !== "#") navigate(item.href); setMobileMenuOpen(false); }}
                   >
                     <span className="text-base">{item.label}</span>
                     {item.hasDropdown && <ChevronDown className="w-4 h-4" />}
