@@ -4,13 +4,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 const navItems = [
-  { label: "Platform", hasDropdown: true },
-  { label: "Solutions", hasDropdown: true },
-  { label: "Marketplace", hasDropdown: true },
-  { label: "Get started", hasDropdown: true },
-  { label: "Insights", hasDropdown: false },
-  { label: "Company", hasDropdown: true },
-  { label: "Events", hasDropdown: false },
+  { label: "Platform", hasDropdown: true, href: "#" },
+  { label: "Solutions", hasDropdown: false, href: "/solutions" },
+  { label: "Marketplace", hasDropdown: true, href: "/marketplace" },
+  { label: "Insights", hasDropdown: false, href: "/insights" },
+  { label: "Company", hasDropdown: false, href: "/company" },
+  { label: "Events", hasDropdown: false, href: "/events" },
 ];
 
 const marketplaceDropdown = {
@@ -59,6 +58,7 @@ export const Navbar = () => {
                 onMouseLeave={() => setHoveredItem(null)}
               >
                 <button
+                  onClick={() => { if (!item.hasDropdown && item.href) { navigate(item.href); } }}
                   className="flex items-center gap-1 px-4 py-2 text-sm text-foreground/80 hover:text-foreground transition-colors"
                 >
                   {item.label}
